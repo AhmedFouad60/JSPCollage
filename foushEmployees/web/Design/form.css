@@ -1,0 +1,351 @@
+body {
+  margin: auto;
+  background: #eaeaea;
+  font-family: 'Open Sans', sans-serif;
+}
+
+.info p {
+  text-align:center;
+  color: #999;
+  text-transform:none;
+  font-weight:600;
+  font-size:15px;
+  margin-top:2px
+}
+.fa{
+    padding-top: 12px;
+    }
+.info i {
+  color:#F6AA93;
+}
+form h1 {
+  font-size: 18px;
+  background: #F6AA93 none repeat scroll 0% 0%;
+  color: rgb(255, 255, 255);
+  padding: 22px 25px;
+  border-radius: 5px 5px 0px 0px;
+  margin: auto;
+  text-shadow: none;
+  text-align:left
+}
+
+form {
+  border-radius: 5px;
+  max-width:700px;
+  width:100%;
+  margin: 5% auto;
+  background-color: #FFFFFF;
+  overflow: hidden;
+}
+
+p span {
+  color: #F00;
+}
+
+p {
+  margin: 0px;
+  font-weight: 500;
+  line-height: 2;
+  color:#333;
+}
+
+h1 {
+  text-align:center;
+  color: #666;
+  text-shadow: 1px 1px 0px #FFF;
+  margin:50px 0px 0px 0px
+}
+
+input {
+  border-radius: 0px 5px 5px 0px;
+  border: 1px solid #eee;
+  margin-bottom: 15px;
+  width: 75%;
+  height: 40px;
+  float: left;
+  padding: 0px 15px;
+}
+
+a {
+  text-decoration:inherit
+}
+
+textarea {
+  border-radius: 0px 5px 5px 0px;
+  border: 1px solid #EEE;
+  margin: 0;
+  width: 75%;
+  height: 130px;
+  float: left;
+  padding: 0px 15px;
+}
+
+.form-group {
+  overflow: hidden;
+  clear: both;
+}
+
+.icon-case {
+  width: 35px;
+  float: left;
+  border-radius: 5px 0px 0px 5px;
+  background:#eeeeee;
+  height:42px;
+  position: relative;
+  text-align: center;
+  line-height:40px;
+}
+
+i {
+  color:#555;
+}
+
+.contentform {
+  padding: 40px 30px;
+}
+
+.bouton-contact{
+  background-color: #81BDA4;
+  color: #FFF;
+  text-align: center;
+  width: 100%;
+  border:0;
+  padding: 17px 25px;
+  border-radius: 0px 0px 5px 5px;
+  cursor: pointer;
+  margin-top: 40px;
+  font-size: 18px;
+}
+
+.leftcontact {
+  width:49.5%;
+  float:left;
+  border-right: 1px dotted #CCC;
+  box-sizing: border-box;
+  padding: 0px 15px 0px 0px;
+}
+
+.rightcontact {
+  width:49.5%;
+  float:right;
+  box-sizing: border-box;
+  padding: 0px 0px 0px 15px;
+}
+
+.validation {
+  display:none;
+  margin: 0 0 10px;
+  font-weight:400;
+  font-size:13px;
+  color: #DE5959;
+}
+
+#sendmessage {
+  border:1px solid #fff;
+  display:none;
+  text-align:center;
+  margin:10px 0;
+  font-weight:600;
+  margin-bottom:30px;
+  background-color: #EBF6E0;
+  color: #5F9025;
+  border: 1px solid #B3DC82;
+  padding: 13px 40px 13px 18px;
+  border-radius: 3px;
+  box-shadow: 0px 1px 1px 0px rgba(0, 0, 0, 0.03);
+}
+
+#sendmessage.show,.show  {
+  display:block;
+}
+<%-- inset in the project table --%>
+INSERT INTO project ('projectName')
+ VALUES (projectName);
+
+<%-- inset in the course table --%>
+INSERT INTO course('courseName')
+VALUES (courseName);
+
+<%-- inset in the language table --%>
+INSERT INTO language('languageName')
+ VALUES (languageName);
+
+<%-- inset in the hobby table --%>
+INSERT INTO hoppy('hoppyName')
+ VALUES (hoppyName);
+
+<%-- inset in the site table --%>
+INSERT INTO site ('siteName')
+VALUES (siteName);
+
+<%-- inset in the app table --%>
+ INSERT INTO app('appName')
+  VALUES (appName);
+
+
+
+
+  /*queries*/
+
+  <%-- select person table --%>
+  <sql:query dataSource = "${snapshot}" var = "personResult">
+     SELECT * from person;
+  </sql:query>
+  <%-- select project table --%>
+  <sql:query dataSource = "${snapshot}" var = "projectResult">
+     SELECT * from project;
+  </sql:query>
+  <%-- select course table --%>
+  <sql:query dataSource = "${snapshot}" var = "courseResult">
+     SELECT * from course;
+  </sql:query>
+  <%-- select language table --%>
+  <sql:query dataSource = "${snapshot}" var = "languageResult">
+     SELECT * from language;
+  </sql:query>
+  <%-- select hobby table --%>
+  <sql:query dataSource = "${snapshot}" var = "hobbyResult">
+     SELECT * from hobby;
+  </sql:query>
+  <%-- select site table --%>
+  <sql:query dataSource = "${snapshot}" var = "siteResult">
+     SELECT * from site;
+  </sql:query>
+  <%-- select app table --%>
+  <sql:query dataSource = "${snapshot}" var = "appResult">
+           SELECT * from app;
+  </sql:query>
+
+
+
+
+
+
+  <%-- Display person tables containt --%>
+  <table border = "1" width = "100%">
+     <tr>
+        <th>person ID</th>
+        <th>First Name</th>
+        <th>Last Name</th>
+        <th>address</th>
+        <th>city</th>
+        <th>country</th>
+
+
+
+     </tr>
+  <%-- This is JSP comment --%>
+     <c:forEach var = "row" items = "${personResult.rows}">
+        <tr>
+           <td><c:out value = "${row.idperson}"/></td>
+           <td><c:out value = "${row.fName}"/></td>
+           <td><c:out value = "${row.LName}"/></td>
+           <td><c:out value = "${row.Address}"/></td>
+           <td><c:out value = "${row.city}"/></td>
+           <td><c:out value = "${row.country}"/></td>
+        </tr>
+     </c:forEach>
+  </table>
+
+  <%-- Display project tables containt --%>
+  <table border = "1" width = "100%">
+     <tr>
+        <th>Project ID</th>
+        <th>projectName</th>
+        <th>person_idperson</th>
+     </tr>
+  <%-- This is JSP comment --%>
+     <c:forEach var = "row" items = "${projectResult.rows}">
+        <tr>
+           <td><c:out value = "${row.idproject}"/></td>
+           <td><c:out value = "${row.projectName}"/></td>
+           <td><c:out value = "${row.person_idperson}"/></td>
+        </tr>
+     </c:forEach>
+  </table>
+
+  <%-- Display course tables containt --%>
+  <table border = "1" width = "100%">
+     <tr>
+        <th>Course ID</th>
+        <th>courseName</th>
+        <th>person_idperson</th>
+
+     </tr>
+  <%-- This is JSP comment --%>
+     <c:forEach var = "row" items = "${courseResult.rows}">
+        <tr>
+           <td><c:out value = "${row.idcourse}"/></td>
+           <td><c:out value = "${row.courseName}"/></td>
+           <td><c:out value = "${row.person_idperson}"/></td>
+        </tr>
+     </c:forEach>
+  </table>
+  <%-- Display language tables containt --%>
+  <table border = "1" width = "100%">
+     <tr>
+       <th>language ID</th>
+       <th>languageName</th>
+       <th>person_idperson</th>
+     </tr>
+  <%-- This is JSP comment --%>
+     <c:forEach var = "row" items = "${languageResult.rows}">
+        <tr>
+           <td><c:out value = "${row.idlanguage}"/></td>
+           <td><c:out value = "${row.languageName}"/></td>
+           <td><c:out value = "${row.person_idperson}"/></td>
+        </tr>
+     </c:forEach>
+  </table>
+  <%-- Display hobby tables containt --%>
+  <table border = "1" width = "100%">
+     <tr>
+       <th>hobby ID</th>
+       <th>hobbyName</th>
+       <th>person_idperson</th>
+     </tr>
+  <%-- This is JSP comment --%>
+     <c:forEach var = "row" items = "${hobbyResult.rows}">
+        <tr>
+           <td><c:out value = "${row.idhobby}"/></td>
+           <td><c:out value = "${row.hobbyName}"/></td>
+           <td><c:out value = "${row.person_idperson}"/></td>
+        </tr>
+     </c:forEach>
+  </table>
+
+
+  <%-- Display site tables containt --%>
+  <table border = "1" width = "100%">
+     <tr>
+       <th>site ID</th>
+       <th>siteName</th>
+       <th>person_idperson</th>
+     </tr>
+  <%-- This is JSP comment --%>
+     <c:forEach var = "row" items = "${siteResult.rows}">
+        <tr>
+           <td><c:out value = "${row.idsite}"/></td>
+           <td><c:out value = "${row.siteName}"/></td>
+           <td><c:out value = "${row.person_idperson}"/></td>
+        </tr>
+     </c:forEach>
+  </table>
+  <%-- Display person tables containt --%>
+
+
+        <table border = "1" width = "100%">
+           <tr>
+             <th>app ID</th>
+             <th>appName</th>
+             <th>person_idperson</th>
+           </tr>
+  <%-- This is JSP comment --%>
+           <c:forEach var = "row" items = "${appResult.rows}">
+              <tr>
+                 <td><c:out value = "${row.idname}"/></td>
+                 <td><c:out value = "${row.appName}"/></td>
+                 <td><c:out value = "${row.person_idperson}"/></td>
+              </tr>
+           </c:forEach>
+        </table>
