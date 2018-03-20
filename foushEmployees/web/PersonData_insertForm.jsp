@@ -56,7 +56,7 @@
 			<div class="form-group">
 			<p> Address <span>*</span></p>
 			<span class="icon-case"><i class="fa fa-map-marker"></i></span>
-				<input type="text" name="Adresse" id="Adresse" data-rule="required" data-msg=""/>
+				<input type="text" name="Address" id="Adresse" data-rule="required" data-msg=""/>
                 <div class="validation"></div>
 			</div>
 
@@ -81,6 +81,17 @@
           <input type="text" name="projectName" id="nom" data-rule="required" data-msg=""/>
           <div class="validation"></div>
       </div>
+
+      <div class="form-group">
+          <p>coures<span>*</span></p>
+          <span class="icon-case"><i class="fa fa-calendar-o"></i></span>
+            <input type="text" name="courseName" id="nom" data-rule="required" data-msg=""/>
+            <div class="validation"></div>
+        </div>
+
+
+
+
 
     <div class="form-group">
     <p>language <span>*</span></p>

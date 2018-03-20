@@ -1,0 +1,190 @@
+<%-- inset in the person table --%>
+INSERT INTO person (Email,fName,LName,Address,city,country)
+VALUES ('<%=(String)( request.getParameter("Email"))%>',
+ '<%=(String)(request.getParameter("fName"))%>',
+ '<%=(String)(request.getParameter("LName"))%>',
+  '<%=(String)(request.getParameter("Address")) %>',
+  '<%=(String)(request.getParameter("city"))%>',
+  '<%=(String)(request.getParameter("country"))%>');
+
+  <%-- inset in the project table --%>
+  INSERT INTO project (projectName)
+   VALUES ('<%=(String)(request.getParameter("projectName"))%>');
+
+
+<%-- inset in the course table --%>
+INSERT INTO course(courseName)
+VALUES ('<%=(String)(request.getParameter("courseName"))%>');
+
+<%-- inset in the language table --%>
+INSERT INTO language(languageName)
+ VALUES ('<%=(String)(request.getParameter("languageName"))%>');
+
+<%-- inset in the hobby table --%>
+INSERT INTO hoppy(hoppyName)
+ VALUES ('<%=(String)(request.getParameter("hobbyName"))%>');
+
+<%-- inset in the site table --%>
+INSERT INTO site (siteName)
+VALUES ('<%=(String)(request.getParameter("siteName"))%>');
+
+<%-- inset in the app table --%>
+ INSERT INTO app(appName)
+  VALUES ('<%=(String)(request.getParameter("appName"))%>');
+
+
+
+
+
+/*body*/
+
+
+<body>
+
+
+
+
+
+
+   <sql:setDataSource var = "snapshot" driver = "com.mysql.jdbc.Driver"
+      url = "jdbc:mysql://localhost/week2"
+      user = "root"  password = ""
+      />
+    <sql:update dataSource = "${snapshot}" var = "result">
+      %-- inset in the person table --%>
+      INSERT INTO person (Email,fName,LName,Address,city,country)
+      VALUES ('<%=(String)( request.getParameter("Email"))%>',
+       '<%=(String)(request.getParameter("fName"))%>',
+       '<%=(String)(request.getParameter("LName"))%>',
+        '<%=(String)(request.getParameter("Address")) %>',
+        '<%=(String)(request.getParameter("city"))%>',
+        '<%=(String)(request.getParameter("country"))%>');
+
+
+         <sql:query dataSource = "${snapshot}" var = "personResult">
+            SELECT idperson from person WHERE Email=
+            <sql:param value = "${'<%=( request.getParameter("Email"))%>'}" />
+
+            ;
+         </sql:query>
+
+
+        <%-- inset in the project table --%>
+        INSERT INTO project (projectName,person_idperson)
+         VALUES ('<%=(String)(request.getParameter("projectName"))%>',
+           "${'personResult'}"
+         )
+
+
+
+     </sql:update>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+     <%-- select person table --%>
+     <sql:query dataSource = "${snapshot}" var = "personResult">
+        SELECT * from person;
+     </sql:query>
+     <%-- select project table --%>
+     <sql:query dataSource = "${snapshot}" var = "projectResult">
+        SELECT * from project;
+     </sql:query>
+     <%-- select course table --%>
+     <sql:query dataSource = "${snapshot}" var = "courseResult">
+        SELECT * from course;
+     </sql:query>
+     <%-- select language table --%>
+     <sql:query dataSource = "${snapshot}" var = "languageResult">
+        SELECT * from language;
+     </sql:query>
+     <%-- select hobby table --%>
+     <sql:query dataSource = "${snapshot}" var = "hobbyResult">
+        SELECT * from hobby;
+     </sql:query>
+     <%-- select site table --%>
+     <sql:query dataSource = "${snapshot}" var = "siteResult">
+        SELECT * from site;
+     </sql:query>
+     <%-- select app table --%>
+     <sql:query dataSource = "${snapshot}" var = "appResult">
+              SELECT * from app;
+     </sql:query>
+
+
+
+
+
+
+     <%-- Display person tables containt --%>
+<div class="container">
+<h1>Person table</h1></br>
+     <div class="table-responsive">
+         <table class="table table-striped">
+            <tr>
+               <th>person ID</th>
+               <th>First Name</th>
+               <th>Last Name</th>
+               <th>address</th>
+               <th>city</th>
+               <th>country</th>
+
+
+
+            </tr>
+         <%-- This is JSP comment --%>
+            <c:forEach var = "row" items = "${personResult.rows}">
+               <tr>
+                  <td><c:out value = "${row.idperson}"/></td>
+                  <td><c:out value = "${row.fName}"/></td>
+                  <td><c:out value = "${row.LName}"/></td>
+                  <td><c:out value = "${row.Address}"/></td>
+                  <td><c:out value = "${row.city}"/></td>
+                  <td><c:out value = "${row.country}"/></td>
+               </tr>
+            </c:forEach>
+         </table>
+   </div>
+ </div>
+
+</body>
+
+
+
+
+
+public class projects(){
+
+}
+public class apps(){
+
+}
+public class wesbsites(){
+
+}
+public class courses(){
+
+}
+public class languages(){
+
+}
+public class hobby(){
+
+}
