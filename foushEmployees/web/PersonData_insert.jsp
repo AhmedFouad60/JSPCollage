@@ -35,6 +35,24 @@
            '<%=(String)(request.getParameter("country"))%>');
 
 
+                   <%-- select person table --%>
+                   <sql:query dataSource = "${snapshot}" var = "personResultForign">
+                      SELECT * from person where Email='<%=request.getParameter("fName")%>'
+                   </sql:query>
+
+
+           <c:forEach var = "row" items = "${personResultForign.rows}">
+             <%-- inset in the project table --%>
+             INSERT INTO project (projectName,person_idperson)
+              VALUES ('<%=(String)(request.getParameter("projectName"))%>',
+                <c:out value = "${row.idperson}"/>
+              );
+
+
+            </c:forEach>
+
+
+
 
 
 
