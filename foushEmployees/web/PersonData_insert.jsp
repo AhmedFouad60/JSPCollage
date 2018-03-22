@@ -27,7 +27,9 @@
          url = "jdbc:mysql://localhost/week2"
          user = "root"  password = ""
          />
-       <sql:update dataSource = "${snapshot}" var = "result">
+
+<%------------------------------------ Start  person TABLE --------------------------------------%>
+<sql:update dataSource = "${snapshot}" var = "result">
          <%-- inset in the person table --%>
          INSERT INTO person (Email,fName,LName,Address,city,country)
          VALUES ('<%=(String)( request.getParameter("Email"))%>',
@@ -37,115 +39,140 @@
            '<%=(String)(request.getParameter("city"))%>',
            '<%=(String)(request.getParameter("country"))%>');
 
-        </sql:update>
+</sql:update>
+<%------------------------------------ End  person TABLE --------------------------------------%>
 
-
+<%------------------------------------ Start  project TABLE --------------------------------------%>
  <sql:update dataSource = "${snapshot}" var = "result">
-        <%-- select person table --%>
-        <sql:query dataSource = "${snapshot}" var = "personResultForign">
-           SELECT * from person where Email='<%=request.getParameter("Email")%>'
-        </sql:query>
+              <%-- select person table  and get the current user entring the data--%>
+              <sql:query dataSource = "${snapshot}" var = "personResultForign">
+                 SELECT * from person where Email='<%=request.getParameter("Email")%>'
+              </sql:query>
+      <c:forEach var = "row" items = "${personResultForign.rows}">
+        <%-- inset in the project table --%>
+        INSERT INTO project (projectName,person_idperson)
+         VALUES ('<%=(String)(request.getParameter("projectName"))%>',
+        '<c:out value = '${row.idperson}'/>'
+         );
+       </c:forEach>
+</sql:update>
+<%------------------------------------ End  project TABLE --------------------------------------%>
+
+<%------------------------------------ Start  course TABLE --------------------------------------%>
+   <sql:update dataSource = "${snapshot}" var = "result">
+       <%-- inset in the course table --%>
+
+       <%-- select person table  and get the current user entring the data--%>
+       <sql:query dataSource = "${snapshot}" var = "personResultForign">
+          SELECT * from person where Email='<%=request.getParameter("Email")%>'
+       </sql:query>
+
+       <c:forEach var = "row" items = "${personResultForign.rows}">
+
+         INSERT INTO course (courseName,person_idperson)
+          VALUES ('<%=(String)(request.getParameter("courseName"))%>',
+         '<c:out value = '${row.idperson}'/>'
+
+          );
+        </c:forEach>
+</sql:update>
+<%------------------------------------ End  course TABLE --------------------------------------%>
+
+<%------------------------------------ Start  hobby TABLE --------------------------------------%>
+      <sql:update dataSource = "${snapshot}" var = "result">
+      <%-- inset in the course table --%>
+
+      <%-- select person table  and get the current user entring the data--%>
+      <sql:query dataSource = "${snapshot}" var = "personResultForign">
+       SELECT * from person where Email='<%=request.getParameter("Email")%>'
+      </sql:query>
+
+      <c:forEach var = "row" items = "${personResultForign.rows}">
+
+      INSERT INTO hobby (hobbyName,person_idperson)
+       VALUES ('<%=(String)(request.getParameter("hobbyName"))%>',
+      '<c:out value = '${row.idperson}'/>'
+
+       );
+      </c:forEach>
+</sql:update>
+<%------------------------------------ End  Hobby TABLE --------------------------------------%>
+
+<%------------------------------------ Start Site TABLE --------------------------------------%>
 
 
+<sql:update dataSource = "${snapshot}" var = "result">
+      <%-- inset in the course table --%>
 
-<c:forEach var = "row" items = "${personResultForign.rows}">
-  <%-- inset in the project table --%>
-  INSERT INTO project (projectName,person_idperson)
-   VALUES ('<%=(String)(request.getParameter("projectName"))%>',
-  '<c:out value = '${row.idperson}'/>'
+      <%-- select person table  and get the current user entring the data--%>
+      <sql:query dataSource = "${snapshot}" var = "personResultForign">
+       SELECT * from person where Email='<%=request.getParameter("Email")%>'
+      </sql:query>
 
-   );
+      <c:forEach var = "row" items = "${personResultForign.rows}">
 
+      INSERT INTO site (siteName,person_idperson)
+       VALUES ('<%=(String)(request.getParameter("siteName"))%>',
+      '<c:out value = '${row.idperson}'/>'
 
- </c:forEach>
-
+       );
+      </c:forEach>
 
 </sql:update>
+<%------------------------------------ End Site TABLE --------------------------------------%>
+
+<%------------------------------------ Start language TABLE --------------------------------------%>
+
+
+<sql:update dataSource = "${snapshot}" var = "result">
+      <%-- inset in the course table --%>
+
+      <%-- select person table  and get the current user entring the data--%>
+      <sql:query dataSource = "${snapshot}" var = "personResultForign">
+       SELECT * from person where Email='<%=request.getParameter("Email")%>'
+      </sql:query>
+
+      <c:forEach var = "row" items = "${personResultForign.rows}">
+
+      INSERT INTO language (languageName,person_idperson)
+       VALUES ('<%=(String)(request.getParameter("languageName"))%>',
+      '<c:out value = '${row.idperson}'/>'
+
+       );
+      </c:forEach>
+
+</sql:update>
+<%------------------------------------ End language TABLE --------------------------------------%>
+
+
+<%------------------------------------ Start app TABLE --------------------------------------%>
+
+
+<sql:update dataSource = "${snapshot}" var = "result">
+      <%-- inset in the course table --%>
+
+      <%-- select person table  and get the current user entring the data--%>
+      <sql:query dataSource = "${snapshot}" var = "personResultForign">
+       SELECT * from person where Email='<%=request.getParameter("Email")%>'
+      </sql:query>
+
+      <c:forEach var = "row" items = "${personResultForign.rows}">
+
+      INSERT INTO app (appName,person_idperson)
+       VALUES ('<%=(String)(request.getParameter("appName"))%>',
+      '<c:out value = '${row.idperson}'/>'
+
+       );
+      </c:forEach>
+
+</sql:update>
+<%------------------------------------ End app TABLE --------------------------------------%>
 
 
 
+<%--Redirct to the index page to show the tables--%>
+<c:redirect url="index.jsp"/>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        <%-- select person table --%>
-        <sql:query dataSource = "${snapshot}" var = "personResult">
-           SELECT * from person;
-        </sql:query>
-        <%-- select project table --%>
-        <sql:query dataSource = "${snapshot}" var = "projectResult">
-           SELECT * from project;
-        </sql:query>
-        <%-- select course table --%>
-        <sql:query dataSource = "${snapshot}" var = "courseResult">
-           SELECT * from course;
-        </sql:query>
-        <%-- select language table --%>
-        <sql:query dataSource = "${snapshot}" var = "languageResult">
-           SELECT * from language;
-        </sql:query>
-        <%-- select hobby table --%>
-        <sql:query dataSource = "${snapshot}" var = "hobbyResult">
-           SELECT * from hobby;
-        </sql:query>
-        <%-- select site table --%>
-        <sql:query dataSource = "${snapshot}" var = "siteResult">
-           SELECT * from site;
-        </sql:query>
-        <%-- select app table --%>
-        <sql:query dataSource = "${snapshot}" var = "appResult">
-                 SELECT * from app;
-        </sql:query>
-
-
-
-
-
-
-        <%-- Display person tables containt --%>
-<div class="container">
-  <h1>Person table</h1></br>
-        <div class="table-responsive">
-            <table class="table table-striped">
-               <tr>
-                  <th>person ID</th>
-                  <th>First Name</th>
-                  <th>Last Name</th>
-                  <th>address</th>
-                  <th>city</th>
-                  <th>country</th>
-
-
-
-               </tr>
-            <%-- This is JSP comment --%>
-               <c:forEach var = "row" items = "${personResult.rows}">
-                  <tr>
-                     <td><c:out value = "${row.idperson}"/></td>
-                     <td><c:out value = "${row.fName}"/></td>
-                     <td><c:out value = "${row.LName}"/></td>
-                     <td><c:out value = "${row.Address}"/></td>
-                     <td><c:out value = "${row.city}"/></td>
-                     <td><c:out value = "${row.country}"/></td>
-                  </tr>
-               </c:forEach>
-            </table>
-      </div>
-    </div>
 
    </body>
 </html>

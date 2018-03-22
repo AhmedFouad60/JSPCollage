@@ -22,7 +22,7 @@ USE `week2` ;
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `week2`.`person` (
   `idperson` INT NOT NULL AUTO_INCREMENT,
-  `Email` VARCHAR(45) NOT NULL,
+  `Email` VARCHAR(45) NOT NULL UNIQUE,
   `fName` VARCHAR(45) NOT NULL,
   `LName` VARCHAR(45) NOT NULL,
   `Address` VARCHAR(45) NOT NULL,
@@ -44,8 +44,8 @@ CREATE TABLE IF NOT EXISTS `week2`.`project` (
   CONSTRAINT `fk_project_person`
     FOREIGN KEY (`person_idperson`)
     REFERENCES `week2`.`person` (`idperson`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE)
 ENGINE = InnoDB;
 
 
@@ -61,8 +61,8 @@ CREATE TABLE IF NOT EXISTS `week2`.`course` (
   CONSTRAINT `fk_course_person1`
     FOREIGN KEY (`person_idperson`)
     REFERENCES `week2`.`person` (`idperson`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE)
 ENGINE = InnoDB;
 
 
@@ -78,8 +78,8 @@ CREATE TABLE IF NOT EXISTS `week2`.`language` (
   CONSTRAINT `fk_language_person1`
     FOREIGN KEY (`person_idperson`)
     REFERENCES `week2`.`person` (`idperson`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE)
 ENGINE = InnoDB;
 
 
@@ -95,8 +95,8 @@ CREATE TABLE IF NOT EXISTS `week2`.`hobby` (
   CONSTRAINT `fk_hobby_person1`
     FOREIGN KEY (`person_idperson`)
     REFERENCES `week2`.`person` (`idperson`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE)
 ENGINE = InnoDB;
 
 
@@ -112,8 +112,8 @@ CREATE TABLE IF NOT EXISTS `week2`.`site` (
   CONSTRAINT `fk_site_person1`
     FOREIGN KEY (`person_idperson`)
     REFERENCES `week2`.`person` (`idperson`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE)
 ENGINE = InnoDB;
 
 
@@ -121,7 +121,7 @@ ENGINE = InnoDB;
 -- Table `week2`.`app`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `week2`.`app` (
-  `idapp` INT NOT NULL,
+  `idapp` INT NOT NULL AUTO_INCREMENT,
   `appName` VARCHAR(45) NOT NULL,
   `person_idperson` INT NOT NULL,
   PRIMARY KEY (`idapp`, `person_idperson`),
@@ -129,8 +129,8 @@ CREATE TABLE IF NOT EXISTS `week2`.`app` (
   CONSTRAINT `fk_app_person1`
     FOREIGN KEY (`person_idperson`)
     REFERENCES `week2`.`person` (`idperson`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE)
 ENGINE = InnoDB;
 
 
